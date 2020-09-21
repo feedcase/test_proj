@@ -1,0 +1,40 @@
+                  {% if request.user.is_authenticated %}
+                    <div class="rd-navbar-main-item"><a class="button button-xs button-lighter" href="{% url 'logout' %}">Выйти</a></div>
+                  {% else %}
+                    <div class="rd-navbar-main-item"><a class="button button-xs button-lighter" data-toggle="modal" href="#LoginModal">Войти</a></div>
+                      <!--Login Modal -->
+                      <div class="modal fade" id="LoginModal" tabindex="-1" role="dialog" aria-labelledby="LoginModal" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h5 class="modal-title" id="LoginModalTitle">Добро пожаловать</h5>
+                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                              </button>
+                            </div>
+                            <div class="modal-body">
+                              <!-- Login Form -->
+                              <form class="rd-mailform" data-form-output="form-output-global" data-form-type="contact" method="post" action="{% url 'login' %}">
+                                <div class="row align-items-md-end row-20">
+                                  <div class="col-md-12">
+                                    <div class="form-wrap">
+                                      <input class="form-input" id="username" type="text" name="username" data-constraints="@Required @Multiple">
+                                      <label class="form-label" for="username">Логин</label>
+                                    </div>
+                                  </div>
+                                  <div class="col-md-12">
+                                    <div class="form-wrap">
+                                      <input class="form-input" id="password" type="password" name="password" data-constraints="@Required @Multiple">
+                                      <label class="form-label" for="password">Пароль</label>
+                                    </div>
+                                  </div>
+                                  {% csrf_token %}
+                                  <button class="button button-block button-primary" type="submit">Войти</button>
+                                </div>
+                              </form>
+                              <button class="button button-block button-default" onClick='location.href="{% url 'registration' %}"'>Зарегестрироваться</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                  {% endif %}

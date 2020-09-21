@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+{% load static %}
+<html class="wide wow-animation" lang="ru">
+  <head>
+    <!-- Site Title-->
+    <title>О Нас | VILLA</title>
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <meta name="description" content="О Нас | VILLA"/>
+    <meta name="keywords" content="о нас,villa,компания"/>
+    <meta name="author" content="Vsevolod Fedoseev">
+    <link rel="icon" href="{% static "images/favicon.ico" %}" type="image/x-icon">
+    <!-- Stylesheets-->
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Lato:300,400,700%7CRoboto:400,500,700">
+    <link rel="stylesheet" href="{% static "css/bootstrap.css" %}">
+    <link rel="stylesheet" href="{% static "css/fonts.css" %}">
+    <link rel="stylesheet" href="{% static "css/style.css" %}">
+    <style>.ie-panel{display: none;background: #212121;padding: 10px 0;box-shadow: 3px 3px 5px 0 rgba(0,0,0,.3);clear: both;text-align:center;position: relative;z-index: 1;} html.ie-10 .ie-panel, html.lt-ie-10 .ie-panel {display: block;}</style>
+  </head>
+  <body>
+    <div class="ie-panel"><a href="http://windows.microsoft.com/en-US/internet-explorer/"><img src="{% static "images/ie8-panel/warning_bar_0000_us.jpg" %}" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today."></a></div>
+    <!-- Page Loader-->
+    <div class="preloader" id="preloader">
+      <div class="page-loader-logo">
+        <div class="brand">
+          <div class="brand__name"><img src="{% static "images/logo-default-380x100.png" %}" alt="" width="380" height="100"/>
+          </div>
+        </div>
+      </div>
+      <div class="page-loader-body">
+        <div id="loadingProgressG">
+          <div class="loadingProgressG" id="loadingProgressG_1"></div>
+        </div>
+      </div>
+    </div>
+    <!-- Page-->
+    <div class="page">
+      <header class="page-header section">
+        <!-- RD Navbar-->
+        <div class="rd-navbar-wrap">
+          <nav class="rd-navbar rd-navbar-creative" data-layout="rd-navbar-fixed" data-sm-layout="rd-navbar-fixed" data-sm-device-layout="rd-navbar-fixed" data-md-layout="rd-navbar-fixed" data-md-device-layout="rd-navbar-fixed" data-lg-device-layout="rd-navbar-fixed" data-lg-layout="rd-navbar-fullwidth" data-xl-device-layout="rd-navbar-fullwidth" data-xl-layout="rd-navbar-fullwidth" data-xxl-device-layout="rd-navbar-fullwidth" data-xxl-layout="rd-navbar-fullwidth" data-stick-up-clone="false" data-md-stick-up-offset="150px" data-lg-stick-up-offset="60px" data-md-stick-up="true" data-lg-stick-up="true">
+            <div class="rd-navbar-main-outer">
+              <div class="rd-navbar-main">
+                <!-- RD Navbar Panel-->
+                <div class="rd-navbar-panel">
+                  <button class="rd-navbar-toggle" data-rd-navbar-toggle=".rd-navbar-nav-wrap"><span></span></button>
+                  <!-- RD Navbar Brand-->
+                  <div class="rd-navbar-brand"><a class="brand" href="{% url 'index' %}">
+                      <div class="brand__name"><img src="{% static "images/logo-default-380x100.png" %}" alt="" width="190" height="50"/>
+                      </div></a></div>
+                </div>
+                <!-- RD Navbar Nav-->
+                <div class="rd-navbar-nav-wrap">
+                  <!-- RD Navbar Nav-->
+                  <ul class="rd-navbar-nav">
+                    <li><a href="{% url 'index' %}">Главная</a>
+                    </li>
+                    <li><a href="{% url 'about-us' %}">О Нас</a>
+                    </li>
+                    <li><a href="{% url 'products' %}">Продукция</a>
+                    </li>
+                    <li><a href="{% url 'contacts' %}">Контакты</a>
+                    </li>
+                    <li class="no-display"><a class="no-display" href="tel:+375298131437">+375(29)813-14-37</a><a class="no-display" href="tel:+375297128652">+375(29)712-86-52</a>
+                    </li>
+                    <li class="no-display"><a class="icon icon-sm icon-primary fa fa-vk no-display" href="https://vk.com/villa_official" target="_blank"></a><a class="icon icon-sm icon-primary fa fa-instagram no-display" href="https://www.instagram.com/villa_vitebsk" target="_blank"></a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </nav>
+        </div>
+      </header>
+      <!-- Breadcrumbs-->
+      <section class="breadcrumbs-custom bg-image" style="background-image: url({% static "images/bg-image-1.jpg" %});">
+        <div class="container" style="background:#574c4c; opacity: 0.8">
+          <h2 class="breadcrumbs-custom__title">Регистрация</h2>
+          <ul class="breadcrumbs-custom__path">
+            <li><a href="{% url 'index' %}">Главная</a></li>
+            <li class="active">О Нас</li>
+          </ul>
+        </div>
+      </section>
+      <!-- Experience since 2008-->
+      <section class="section section-md bg-default">
+        <div class="container">
+          <div class="row row-70 justify-content-md-center justify-content-xl-between">
+            <div class="col-md-10 col-lg-6 col-xl-5">
+              <div class="row grid-2">
+                <div class="col-6"><img src="{% static "images/about-1-273x214.jpg" %}" alt="" width="273" height="214"/><img src="{% static "images/about-2-273x214.jpg" %}" alt="" width="273" height="214"/>
+                </div>
+                <div class="col-6"><img src="{% static "images/about-3-273x451.jpg" %}" alt="" width="273" height="451"/>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-10 col-lg-6">
+              <!-- Reg Form -->
+              <form class="rd-mailform" data-form-output="form-output-global" data-form-type="contact" method="post" action="{% url 'registration' %}">
+                <div class="row align-items-md-end row-20">
+                  <div class="col-md-12">
+                    <div class="form-wrap">
+                      <input class="form-input" id="contact-email" type="email" name="email" data-constraints="@Email @Required">
+                      <label class="form-label" for="contact-email">E-mail</label>
+                    </div>
+                  </div>
+                  <div class="col-md-12">
+                    <div class="form-wrap">
+                      <input class="form-input" id="username" type="text" name="username" data-constraints="@Required">
+                      <label class="form-label" for="username">Логин</label>
+                    </div>
+                  </div>
+                  <div class="col-md-12">
+                    <div class="form-wrap">
+                      <input class="form-input" id="password" type="password" name="password" data-constraints="@Required">
+                      <label class="form-label" for="password">Пароль</label>
+                    </div>
+                  </div>
+                  <div class="col-md-12">
+                    <div class="form-wrap">
+                      <input class="form-input" id="confirm_password" type="password" name="confirm_password" data-constraints="@Required">
+                      <label class="form-label" for="confirm_password">Повторите пароль</label>
+                    </div>
+                  </div>
+                  {% csrf_token %}
+                  <button class="button button-block button-primary" type="submit" onClick='setTimeout(() => location.href="{% url 'index' %}", 1500)'>Зарегестрироваться</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- Page Footer-->
+      <footer class="footer-classic bg-gray-8">
+        <div class="container">
+          <div class="footer-classic__main">
+            <ul class="list-nav-bordered">
+              <li><a href="{% url 'index' %}">Главная</a></li>
+              <li><a href="{% url 'about-us' %}">О Нас</a>
+              </li>
+              <li><a href="{% url 'products' %}">Продукция</a></li>
+              <li><a href="{% url 'contacts' %}">Контакты</a>
+              </li>
+            </ul>
+          </div>
+          <div class="divider"></div>
+          <div class="footer-classic__aside">
+            <div class="row row-20">
+              <div class="col-md-6 text-md-left">
+                <!-- Rights-->
+                <p class="rights"><span>VILLA</span><span>&nbsp;&copy;&nbsp;</span><span class="copyright-year"></span>. Все права защищены.</p>
+              </div>
+              <div class="col-md-6 text-md-right">
+                <ul class="list-inline-xxs">
+                  <li>
+                    <p>Подписывайтесь на нас</p>
+                  </li>
+                  <li><a class="icon icon-xs icon-style-modern fa fa-vk" href="https://vk.com/villa_official" target="_blank"></a></li>
+                  <li><a class="icon icon-xs icon-style-modern fa fa-instagram" href="https://www.instagram.com/villa_vitebsk/" target="_blank"></a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+    <!-- Javascript-->
+    <script src="http://code.jquery.com/jquery-1.8.3.js" ></script>
+    <script src="{% static "js/core.min.js" %}"></script>
+    <script src="{% static "js/script.js" %}"></script>
+  </body>
+</html>

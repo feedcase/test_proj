@@ -9,7 +9,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta charset="utf-8">
     <meta name="description" content="{{product.title}} | VILLA"/>
-    <meta name="keywords" content="окна,сетка,москитная,москитные,сетки"/>
+    <meta name="keywords" content="{{ product.title }}"/>
     <meta name="author" content="Vsevolod Fedoseev">
     <link rel="icon" href="{% static "images/favicon.ico" %}" type="image/x-icon">
     <!-- Stylesheets-->
@@ -97,6 +97,12 @@
             <div class="col-md-10 col-lg-6 col-xl-5">
               <h4>{{ product.title }}</h4>
               <p>{{ product.description }}</p>
+              <p>{{ product.formatted_price }}</p>
+              <form class="rd-mailform" action="{% url "cart:cart_add" product.id %}" method="post">
+                {{ cart_product_form }}
+                {% csrf_token %}
+                <button class="button button-block button-primary" type="submit">Добавить в корзину</button>
+              </form>
             </div>
           </div>
         </div>
@@ -107,7 +113,7 @@
           <div class="row row-50">
             <div class="col-lg-10 col-xl-8">
               <h2>Заказ</h2>
-                <br>Так же Вы можете узнать интересующие Вас подробности о товаре {{ product.title }} </br> спросив на вкладке <a href="{% url 'contacts' %}">Контактов</a></p>
+                <p>Так же Вы можете узнать интересующие Вас подробности о товаре {{ product.title }} </br> спросив на вкладке <a href="{% url 'contacts' %}">Контактов</a></p>
             </div>
           </div>
         </div>
@@ -148,7 +154,6 @@
     </div>
     <!-- Javascript-->
     <script src="http://code.jquery.com/jquery-1.8.3.js" ></script>
-    <script src="{% static "js/btn.js" %}"></script>
     <script src="{% static "js/core.min.js" %}"></script>
     <script src="{% static "js/script.js" %}"></script>
   </body>

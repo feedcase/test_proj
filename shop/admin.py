@@ -1,12 +1,25 @@
 from django.contrib import admin
-
+import django.utils.safestring
 # Register your models here.
 from shop.models import *
 
 
-admin.site.register(ShopItem, admin.ModelAdmin)
-admin.site.register(Order, admin.ModelAdmin)
-admin.site.register(OrderItem, admin.ModelAdmin)
-admin.site.register(Categories, admin.ModelAdmin)
-admin.site.register(Feeds, admin.ModelAdmin)
-admin.site.register(FeedbackModel, admin.ModelAdmin)
+@admin.register(ShopItem)
+class ProductAdmin(admin.ModelAdmin):
+    list_display = ['title', 'url_title', 'price', 'image', 'post_date']
+
+
+@admin.register(FeedbackModel)
+class FeedbackAdmin(admin.ModelAdmin):
+    list_display = ['name', 'email', 'message', 'phone', 'comments']
+    list_editable = ['comments']
+
+
+@admin.register(Feeds)
+class FeedsAdmin(admin.ModelAdmin):
+    list_display = ['title', 'news_category', 'news_post_date']
+
+
+@admin.register(Categories)
+class CategoriesAdmin(admin.ModelAdmin):
+    list_display = ['category', 'category_image']

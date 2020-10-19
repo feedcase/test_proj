@@ -196,14 +196,14 @@
       <!-- Latest News-->
       <section class="section section-md bg-default text-center">
         <div class="container">
-          <h2>Новинки</h2>
+          <h2>Новости</h2>
           <div class="row row-50">
             {% for feed in feeds %}
             <div class="col-md-6 wow fadeInRightSmall">
               <!-- Post boxed-->
               <article class="post-boxed"><a class="post-boxed__image-wrap" href="{% url 'new' news_id=feed.id %}"><img class="post-boxed__image" src="{{ feed.news_image.url }}" alt="{{ feed.title }}" width="524" height="355"/></a>
                 <div class="post-boxed__main">
-                  <time class="post-boxed__time" datetime="{{ feed.news_post_date }}"><span class="big"></span><span></span></time>
+                  <time class="post-boxed__time" datetime="{{ feed.news_post_date }}"><span class="big">{{ feed.news_post_date.day }}</span><span>{{ feed.news_post_date.month }}</span></time>
                   <p class="post-boxed__title"><a href="{% url 'new' news_id=feed.id %}">{{ feed.title }}</a></p>
                 </div>
               </article>

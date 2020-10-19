@@ -13,6 +13,7 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+from django.conf.urls import url
 from django.contrib import admin
 from shop.rest import router
 from django.urls import path, re_path, include
@@ -22,10 +23,13 @@ from test_proj import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    url(r'^cart/', include('cart.urls', namespace='cart')),
+    url(r'^create/$', views.order_create, name='order_create'),
     path('', views.Index.as_view()),
     path('api/', include(router.urls)),
     path('login', views.Login.as_view(), name='login'),
     path('logout', views.Logout.as_view(), name='logout'),
+    path('reset-password', views.ResetPassword.as_view(), name='reset-password'),
     path('registration', views.Registration.as_view(), name='registration'),
     path('products', views.ProductsPage.as_view(), name='products'),
     path('about-us', views.AboutPage.as_view(), name='about-us'),
@@ -34,7 +38,7 @@ urlpatterns = [
     path('products/<int:product_id>', views.Product.as_view(), name='product'),
     path('', views.Index.as_view(), name='index'),
     path('feed/<int:news_id>', views.Feed.as_view(), name='new'),
-    path('account', views.AccountPage.as_view(), name='account')
+    path('account/<int:user_id>', views.AccountPage.as_view(), name='account')
 ]
 
 if settings.DEBUG:

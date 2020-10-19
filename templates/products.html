@@ -95,8 +95,8 @@
               <h2>Продукция</h2>
             </div>
             <div class="isotope" data-isotope-layout="fitRows" data-isotope-group="products">
+              {% for item in items %}
               <div class="row row-offset-2">
-                {% for item in items %}
                 <div class="col-6 col-md-4 col-lg-3 isotope-item">
                   <!-- Product-->
                   <article class="product"> <a class="product__image-wrap" href="{% url 'product' product_id=item.id %}" target="_blank"><img class="product__image" src="{{ item.image.url }}" alt="{{ item.title }}" width="360" height="240"/></a>
@@ -106,8 +106,8 @@
                     <div class="product__footer"><a class="button button-xs button-gray-2" href="{% url 'product' product_id=item.id %}" target="_blank">подробнее</a></div>
                   </article>
                 </div>
-                {% endfor %}
               </div>
+              {% endfor %}
             </div>
           </div>
         </div>

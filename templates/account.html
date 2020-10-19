@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+{% load static %}
+<html class="wide wow-animation" lang="ru">
+  <head>
+    <!-- Site Title-->
+    <title> Профиль {{ acc.username }} | VILLA</title>
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <meta name="author" content="Vsevolod Fedoseev">
+    <link rel="icon" href="{% static "images/favicon.ico" %}" type="image/x-icon">
+    <!-- Stylesheets-->
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Lato:300,400,700%7CRoboto:400,500,700">
+    <link rel="stylesheet" href="{% static "css/bootstrap.css" %}">
+    <link rel="stylesheet" href="{% static "css/fonts.css" %}">
+    <link rel="stylesheet" href="{% static "css/style.css" %}">
+    <style>.ie-panel{display: none;background: #212121;padding: 10px 0;box-shadow: 3px 3px 5px 0 rgba(0,0,0,.3);clear: both;text-align:center;position: relative;z-index: 1;} html.ie-10 .ie-panel, html.lt-ie-10 .ie-panel {display: block;}</style>
+  </head>
+  <body>
+    <div class="ie-panel"><a href="http://windows.microsoft.com/en-US/internet-explorer/"><img src="{% static "images/ie8-panel/warning_bar_0000_us.jpg" %}" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today."></a></div>
+    <!-- Page Loader-->
+    <div class="preloader" id="preloader">
+      <div class="page-loader-logo">
+        <div class="brand">
+          <div class="brand__name"><img src="{% static "images/logo-default-380x100.png" %}" alt="" width="380" height="100"/>
+          </div>
+        </div>
+      </div>
+      <div class="page-loader-body">
+        <div id="loadingProgressG">
+          <div class="loadingProgressG" id="loadingProgressG_1"></div>
+        </div>
+      </div>
+    </div>
+    <!-- Page-->
+    <div class="page">
+      <header class="page-header section">
+        <!-- RD Navbar-->
+        <div class="rd-navbar-wrap">
+          <nav class="rd-navbar rd-navbar-creative" data-layout="rd-navbar-fixed" data-sm-layout="rd-navbar-fixed" data-sm-device-layout="rd-navbar-fixed" data-md-layout="rd-navbar-fixed" data-md-device-layout="rd-navbar-fixed" data-lg-device-layout="rd-navbar-fixed" data-lg-layout="rd-navbar-fullwidth" data-xl-device-layout="rd-navbar-fullwidth" data-xl-layout="rd-navbar-fullwidth" data-xxl-device-layout="rd-navbar-fullwidth" data-xxl-layout="rd-navbar-fullwidth" data-stick-up-clone="false" data-md-stick-up-offset="150px" data-lg-stick-up-offset="60px" data-md-stick-up="true" data-lg-stick-up="true">
+            <div class="rd-navbar-main-outer">
+              <div class="rd-navbar-main">
+                <!-- RD Navbar Panel-->
+                <div class="rd-navbar-panel">
+                  <button class="rd-navbar-toggle" data-rd-navbar-toggle=".rd-navbar-nav-wrap"><span></span></button>
+                  <!-- RD Navbar Brand-->
+                  <div class="rd-navbar-brand"><a class="brand" href="{% url 'index' %}">
+                      <div class="brand__name"><img src="{% static "images/logo-default-380x100.png" %}" alt="" width="190" height="50"/>
+                      </div></a></div>
+                </div>
+                <!-- RD Navbar Nav-->
+                <div class="rd-navbar-nav-wrap">
+                  {% include "users_side.html" %}
+                  <!-- RD Navbar Nav-->
+                  <ul class="rd-navbar-nav">
+                    <li><a href="{% url 'index' %}">Главная</a>
+                    </li>
+                    <li><a href="{% url 'about-us' %}">О Нас</a>
+                    </li>
+                    <li><a href="{% url 'products' %}">Продукция</a>
+                    </li>
+                    <li><a href="{% url 'contacts' %}">Контакты</a>
+                    </li>
+                    {% include 'header.html' %}
+                    <li class="no-display"><a class="no-display" href="tel:+375298131437">+375(29)813-14-37</a><a class="no-display" href="tel:+375297128652">+375(29)712-86-52</a>
+                    </li>
+                    <li class="no-display"><a class="icon icon-sm icon-primary fa fa-vk no-display" href="https://vk.com/villa_official" target="_blank"></a><a class="icon icon-sm icon-primary fa fa-instagram no-display" href="https://www.instagram.com/villa_vitebsk" target="_blank"></a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </nav>
+        </div>
+      </header>
+      <!-- Breadcrumbs-->
+      <section class="breadcrumbs-custom bg-image" style="background-image: url({% static 'images/bg-image-3.jpg' %});">
+            <div class="container" style="background:#574c4c; opacity: 0.8">
+              <h2 class="breadcrumbs-custom__title">Профиль {{ acc.username }}</h2>
+              <ul class="breadcrumbs-custom__path">
+                <li><a href="{% url 'index' %}">Главная</a></li>
+                <li class="active">{{ acc.username }}</li>
+              </ul>
+            </div>
+      </section>
+      <!-- Typography-->
+      <section class="section section-md bg-gray-4">
+        <div class="container">
+          <div class="row row-50">
+            <div class="col-lg-10 col-xl-8">
+              <h3>Добро пожаловать</h3>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- Tabs-->
+      <section class="section section-md bg-default">
+        <div class="container">
+          <div class="justify-content-md-center justify-content-xl-between">
+            <ul class="nav nav-tabs">
+              <li class="nav-item">
+                <a class="nav-link active" data-toggle="tab" href="#account_cart">Корзина</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#account_orders">Заказы</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#account_news">Новости</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#account_info">Инфо профиля</a>
+              </li>
+            </ul>
+            <div class="tab-content">
+              <div class="tab-pane fade show active" id="account_cart">
+                <div><br>
+                  <h4>Корзина</h4><br>
+                </div>
+                {% if cart %}
+                {% for item in cart %}
+                  {% with product=item.product %}
+                  <!-- Image Left-->
+                  <section class="section section-md bg-default">
+                    <div class="container">
+                      <div class="row">
+                        <div class="col-lg-10 col-xl-8">
+                          <p><img src="{% if product.image %}{{ product.image.url }}{% else %}{% static "image/no-image.svg" %}{% endif %}" alt="{{ product.title }}" width="289" height="194"/><div class="thumb-elegant__overlay"></div></a><h4>{{ product.title }}</h4><p>Количество: {{ item.quantity }}<br><a class="active" href="{% url "cart:cart_remove" product.id%}">Удалить</a><br>Цена товара: BYN {{ item.price }}<br>Общая стоимость: BYN {{ item.total_price }}<br></p>
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </section>
+                  {% endwith %}
+                {% endfor %}
+                <div><br>
+                  <h5>Цена заказа:</h5>
+                  <p>BYN {{ cart.get_total_price }}</p>
+                  <div><a class="button button-block button-primary" data-toggle="modal" href="#ConfirmOrderModal">Оформить заказ</a></div>
+                  <!--Login Modal -->
+                  <div class="modal fade" id="ConfirmOrderModal" tabindex="-1" role="dialog" aria-labelledby="ConfirmOrderModal" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="LoginModalTitle">Оформление заказа</h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="modal-body">
+                          <!-- Login Form -->
+                          <form class="rd-mailform" data-form-output="form-output-global" data-form-type="contact" method="post" action="{% url 'order_create' %}">
+                            <div class="row align-items-md-end row-20">
+                              <div class="col-md-12">
+                                <div class="form-wrap">
+                                  <input class="form-input" id="first_name" type="text" name="first_name" data-constraints="@Required">
+                                  <label class="form-label" for="first_name">Имя</label>
+                                </div>
+                              </div>
+                              <div class="col-md-12">
+                                <div class="form-wrap">
+                                  <input class="form-input" id="last_name" type="text" name="last_name" data-constraints="@Required">
+                                  <label class="form-label" for="last_name">Фамилия</label>
+                                </div>
+                              </div>
+                              <div class="col-md-12">
+                                <div class="form-wrap">
+                                  <input class="form-input" id="email" type="email" name="email" data-constraints="@Email @Required">
+                                  <label class="form-label" for="email">Email</label>
+                                </div>
+                              </div>
+                              <div class="col-md-12">
+                                <div class="form-wrap">
+                                  <input class="form-input" id="city" type="text" name="city" data-constraints="@Required">
+                                  <label class="form-label" for="city">Город</label>
+                                </div>
+                              </div>
+                              <div class="col-md-12">
+                                <div class="form-wrap">
+                                  <input class="form-input" id="address" type="text" name="address" data-constraints="@Required">
+                                  <label class="form-label" for="address">Адрес</label>
+                                </div>
+                              </div>
+                              <div class="col-md-12">
+                                <div class="form-wrap">
+                                  <input class="form-input" id="postal_code" type="number" name="postal_code" data-constraints="@Required">
+                                  <label class="form-label" for="postal_code">Почтовый индекс</label>
+                                </div>
+                              </div>
+                              {% csrf_token %}
+                              <button class="button button-block button-primary" type="submit" onClick='setTimeout(() => location.href="{% url 'account' user_id=request.user.id %}", 1500)'>Подтвердить заказ</button>
+                            </div>
+                          </form>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                {% else %}
+                <div>
+                  <h5>В корзине нет товаров</h5>
+                  <p>Можете посетить <a href="{% url 'products' %}">Наш каталог</a></p>
+                </div>
+                {% endif %}
+              </div>
+              <div class="tab-pane fade" id="account_orders">
+                <div><br>
+                  <h4>Заказы</h4><br>
+                    <div class="container">
+                      <div class="row row-50">
+                        <div class="col-lg-10 col-xl-8">
+                            <p>У вас нет заказов</p>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+                <p></p>
+              </div>
+              <div class="tab-pane fade" id="account_news">
+                <div><br>
+                  <h4>Новости</h4><br>
+                </div>
+                <!-- Latest News-->
+                <section class="section section-md bg-default text-center">
+                  {% for feed in feeds %}
+                  <div class="container">
+                      <div class="col-md-6 wow fadeInRightSmall">
+                        <!-- Post boxed-->
+                        <article class="post-boxed"><a class="post-boxed__image-wrap" href="{% url 'new' news_id=feed.id %}"><img class="post-boxed__image" src="{{ feed.news_image.url }}" alt="{{ feed.title }}" width="524" height="355"/></a>
+                          <div class="post-boxed__main">
+                            <time class="post-boxed__time" datetime="{{ feed.news_post_date }}"><span class="big">{{ feed.news_post_date.day }}</span><span>{{ feed.news_post_date.month }}</span></time>
+                            <p class="post-boxed__title"><a href="{% url 'new' news_id=feed.id %}">{{ feed.title }}</a></p>
+                          </div>
+                        </article>
+                      </div>
+                  </div>
+                  {% endfor %}
+                </section>
+              </div>
+              <div class="tab-pane fade" id="account_info">
+                <div><br>
+                  <h4>Вы можете поменять пароль</h4>
+                </div>
+              <form class="rd-mailform" data-form-output="form-output-global" data-form-type="contact" method="post" action="{% url 'reset-password' %}">
+                <div class="align-items-md-end">
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-wrap"  >
+                        <input class="form-input" id="old_password" type="password" name="old_password" data-constraints="@Required">
+                        <label class="form-label" for="old_password">Введите старый пароль</label>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    {% if error %}
+                    <div class="col-md-6">
+                      <div class="form-wrap">
+                        <div class="error">{{ error }}</div>
+                      </div>
+                    </div>
+                    {% endif %}
+                    <div class="col-md-6">
+                      <div class="form-wrap">
+                        <input class="form-input" id="new_password" type="password" name="new_password" data-constraints="@Required">
+                        <label class="form-label" for="new_password">Новый пароль</label>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-wrap"  >
+                        <input class="form-input" id="confirm_password" type="password" name="confirm_password" data-constraints="@Required">
+                        <label class="form-label" for="confirm_password">Повторите пароль</label>
+                      </div>
+                    </div>
+                  </div>
+                  {% csrf_token %}
+                  <div class="row">
+                    <button class="button button-block button-primary col-md-6" type="submit">Сменить пароль</button>
+                  </div>
+                </div>
+              </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- Page Footer-->
+      <footer class="footer-classic bg-gray-8">
+        <div class="container">
+          <div class="footer-classic__main">
+            <ul class="list-nav-bordered">
+              <li><a href="{% url 'index' %}">Главная</a></li>
+              <li><a href="{% url 'about-us' %}">О Нас</a>
+              </li>
+              <li><a href="{% url 'products' %}">Продукция</a></li>
+              <li><a href="{% url 'contacts' %}">Контакты</a>
+              </li>
+            </ul>
+          </div>
+          <div class="divider"></div>
+          <div class="footer-classic__aside">
+            <div class="row row-20">
+              <div class="col-md-6 text-md-left">
+                <!-- Rights-->
+                <p class="rights"><span>VILLA</span><span>&nbsp;&copy;&nbsp;</span><span class="copyright-year"></span>. Все права защищены.</p>
+              </div>
+              <div class="col-md-6 text-md-right">
+                <ul class="list-inline-xxs">
+                  <li>
+                    <p>Подписывайтесь на нас</p>
+                  </li>
+                  <li><a class="icon icon-xs icon-style-modern fa fa-vk" href="https://vk.com/villa_official" target="_blank"></a></li>
+                  <li><a class="icon icon-xs icon-style-modern fa fa-instagram" href="https://www.instagram.com/villa_vitebsk/" target="_blank"></a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+    <!-- Javascript-->
+    <script src="http://code.jquery.com/jquery-1.8.3.js" ></script>
+    <script src="{% static "js/core.min.js" %}"></script>
+    <script src="{% static "js/script.js" %}"></script>
+  </body>
+</html>

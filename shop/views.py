@@ -7,8 +7,24 @@ from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.models import User
 from django.db.utils import IntegrityError
 from shop.forms import *
-import datetime
-from django.shortcuts import resolve_url
+from orders.models import OrderItem
+from orders.forms import OrderCreateForm
+from cart.cart import Cart
+from cart.forms import CartAddProductForm
+
+
+def order_create(request):
+    cart = Cart(request)
+    form = OrderCreateForm(request.POST)
+    if form.is_valid():
+        order = form.save()
+        for item in cart:
+            OrderItem.objects.create(order=order,
+                                     product=item['product'],
+                                     price=item['price'],
+                                     quantity=item['quantity'])
+        cart.clear()
+        return render(request.META.get('HTTP_REFERER'))
 
 
 class Index(View):
@@ -17,10 +33,7 @@ class Index(View):
         feed = Feeds.objects.all()
         categories = Categories.objects.all()
         new_feeds = feed.order_by('news_post_date')[:2]
-        days = new_feeds[0].news_post_date.day
-        months = new_feeds[0].news_post_date.month
-        return render(request, 'index.html', {'items': items, 'category': categories, 'feeds': new_feeds,
-                                              'day': days, 'month': months})
+        return render(request, 'index.html', {'items': items, 'category': categories, 'feeds': new_feeds})
 
 
 class AboutPage(View):
@@ -53,7 +66,9 @@ class Product(View):
         item = ShopItem.objects.get(pk=product_id)
         category = Categories.objects.get(category=item.category_name)
         category_id = category.id
-        return render(request, 'product.html', {'product': item, 'id': category_id})
+        cart_product_form = CartAddProductForm()
+        return render(request, 'product.html', {'product': item, 'id': category_id,
+                                                'cart_product_form': cart_product_form})
 
 
 class Login(View):
@@ -92,7 +107,7 @@ class Registration(View):
 class Logout(View):
     def get(self, request: HttpRequest) -> HttpResponse:
         logout(request)
-        return redirect(request.META.get('HTTP_REFERER'))
+        return redirect('index')
 
 
 class CategoriesView(View):
@@ -105,18 +120,37 @@ class CategoriesView(View):
 class Feed(View):
     def get(self, request: HttpRequest, news_id: int) -> HttpResponse:
         feed = Feeds.objects.get(pk=news_id)
-        feeds_time = feed.news_post_date
         category = Categories.objects.get(category=feed.news_category)
         category_id = category.id
-        days = feeds_time.strftime('%d')
-        month = feeds_time.strftime('%m')
-        return render(request, 'news.html', {'feeds': feed, 'day': days, 'month': month, 'id': category_id})
+        return render(request, 'news.html', {'feeds': feed, 'id': category_id})
 
 
 class AccountPage(View):
-    # def get(self, request: HttpRequest) -> HttpResponse:
-    #     if request.user.is_authenticated:
-    #         ...
-    # render(request, )
-    #
-    ...
+    def get(self, request: HttpRequest, user_id: int) -> HttpResponse:
+        if request.user.is_authenticated:
+            account = request.user
+            feed = Feeds.objects.all().order_by('news_post_date')
+            cart = Cart(request)
+            order = OrderItem.objects.filter(order__email=account.email)
+            return render(request, 'account.html', {'acc': account,
+                                                    'feeds': feed,
+                                                    'cart': cart,
+                                                    'order': order})
+        else:
+            redirect('/')
+
+
+class ResetPassword(View):
+    def post(self, request: HttpRequest) -> HttpResponse:
+        old_password = request.POST['old_password']
+        new_password = request.POST['password']
+        confirm_password = request.POST['confirm_password']
+        if new_password and new_password != confirm_password or new_password == old_password:
+            return render(request, 'account.html', {'error': 'Старый и новый пароли совпадают'})
+        if new_password != confirm_password:
+            return render(request, 'account.html', {'error': 'Пароли не совпадают'})
+        user = User.objects.get(username__exact=request.user.username)
+        user.set_password(new_password)
+        user.save()
+        login(request, user)
+        return redirect(request.META.get('HTTP_REFERER'))

@@ -1,4 +1,4 @@
                 {% if request.user.is_authenticated %}
-                    <li><a href="{% url 'account' %}">ACC</a>
+                    <li><a href="{% url 'account' user_id=request.user.id %}">{{ request.user }}</a>
                     </li>
                 {% endif %}

@@ -1,9 +1,10 @@
+from rest_framework import permissions
+
 from shop.models import *
 from rest_framework.serializers import *
 from rest_framework.viewsets import ModelViewSet, GenericViewSet
 from rest_framework.routers import DefaultRouter
-from rest_framework.permissions import IsAuthenticated
-
+from rest_framework.permissions import IsAdminUser
 
 __all__ = 'ProductSerializer', 'ProductViewSet'
 
@@ -17,39 +18,47 @@ class ProductSerializer(ModelSerializer):
 class ProductViewSet(ModelViewSet):
     queryset = ShopItem.objects.all()
     serializer_class = ProductSerializer
+    permission_classes = [IsAdminUser]
 
 
-class OrderSerializer(ModelSerializer):
+class FeedbackSerializer(ModelSerializer):
     class Meta:
-        model = Order
+        model = FeedbackModel
         fields = '__all__'
 
 
-class OrderViewSet(ModelViewSet):
-    serializer_class = OrderSerializer
-    permission_classes = [IsAuthenticated]
-
-    def get_queryset(self):
-        user: User = self.request.user
-        order = Order.objects.get_or_create(user=user, name='x', tel='x', address='x')[0]
-        return order,
+class FeedbackViewSet(ModelViewSet):
+    queryset = FeedbackModel.objects.all()
+    serializer_class = FeedbackSerializer
+    permission_classes = [IsAdminUser]
 
 
-class OrderItemSerializer(ModelSerializer):
+class CategorySerializer(ModelSerializer):
     class Meta:
-        model = OrderItem
-        fields = ['id', 'amount', 'item']
+        model = Categories
+        fields = '__all__'
 
 
-class OrderItemViewSet(ModelViewSet):
-    serializer_class = OrderItemSerializer
-    permission_classes = [IsAuthenticated]
+class CategoryViewSet(ModelViewSet):
+    queryset = Categories.objects.all()
+    serializer_class = CategorySerializer
+    permission_classes = [IsAdminUser]
 
-    def get_queryset(self):
-        user: User = self.request.user
-        order = Order.objects.get_or_create(user=user, name='x', tel='x', address='x')[0]
-        return OrderItem.objects.filter(order=order)
+
+class FeedsSerializer(ModelSerializer):
+    class Meta:
+        model = Feeds
+        fields = '__all__'
+
+
+class FeedsViewSet(ModelViewSet):
+    queryset = Feeds.objects.all()
+    serializer_class = FeedsSerializer
+    permission_classes = [IsAdminUser]
 
 
 router = DefaultRouter()
 router.register('product', ProductViewSet, 'product')
+router.register('category', CategoryViewSet, 'category')
+router.register('feeds', FeedsViewSet, 'feeds')
+router.register('feedback', FeedbackViewSet, 'feedback')

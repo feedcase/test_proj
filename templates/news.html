@@ -8,8 +8,8 @@
     <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta charset="utf-8">
-    <meta name="description" content="{{feeds.title}} | VILLA"/>
-    <meta name="keywords" content="окна,сетка,москитная,москитные,сетки"/>
+    <meta name="description" content="{{ feeds.title }} | VILLA"/>
+    <meta name="keywords" content="{{ feeds.title }}"/>
     <meta name="author" content="Vsevolod Fedoseev">
     <link rel="icon" href="{% static "images/favicon.ico" %}" type="image/x-icon">
     <!-- Stylesheets-->
@@ -91,12 +91,8 @@
         <div class="container">
           <div class="row row-70 justify-content-md-center justify-content-xl-between">
             <div class="col-md-10 col-lg-6">
-              <div><img src="{{ product.image_big.url }}" alt="" width="451" height="451"/>
+              <div><img src="{{ feeds.news_big_image.url }}" alt="" width="451" height="451"/>
               </div>
-            </div>
-            <div class="col-md-10 col-lg-6 col-xl-5">
-              <h4>{{ product.title }}</h4>
-              <p>{{ product.description }}</p>
             </div>
           </div>
         </div>
@@ -106,8 +102,8 @@
         <div class="container">
           <div class="row row-50">
             <div class="col-lg-10 col-xl-8">
-              <h2>Заказ</h2>
-                <br>Так же Вы можете узнать интересующие Вас подробности о товаре {{ product.title }} </br> спросив на вкладке <a href="{% url 'contacts' %}">Контактов</a></p>
+              <h3>{{ feeds.title }}</h3>
+                <p>{{ feeds.news_body }}</p>
             </div>
           </div>
         </div>
@@ -148,7 +144,6 @@
     </div>
     <!-- Javascript-->
     <script src="http://code.jquery.com/jquery-1.8.3.js" ></script>
-    <script src="{% static "js/btn.js" %}"></script>
     <script src="{% static "js/core.min.js" %}"></script>
     <script src="{% static "js/script.js" %}"></script>
   </body>

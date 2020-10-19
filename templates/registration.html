@@ -84,7 +84,7 @@
           </ul>
         </div>
       </section>
-      <!-- Experience since 2008-->
+      <!-- Registration -->
       <section class="section section-md bg-default">
         <div class="container">
           <div class="row row-70 justify-content-md-center justify-content-xl-between">
@@ -100,6 +100,13 @@
               <!-- Reg Form -->
               <form class="rd-mailform" data-form-output="form-output-global" data-form-type="contact" method="post" action="{% url 'registration' %}">
                 <div class="row align-items-md-end row-20">
+                  {% if error %}
+                  <div class="col-md-12">
+                    <div class="form-wrap">
+                      <div class="error">{{ error }}</div>
+                    </div>
+                  </div>
+                  {% endif %}
                   <div class="col-md-12">
                     <div class="form-wrap">
                       <input class="form-input" id="contact-email" type="email" name="email" data-constraints="@Email @Required">

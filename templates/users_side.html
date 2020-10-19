@@ -1,5 +1,6 @@
                   {% if request.user.is_authenticated %}
                     <div class="rd-navbar-main-item"><a class="button button-xs button-lighter" href="{% url 'logout' %}">Выйти</a></div>
+                    <div class="rd-navbar-main-item"><a class="button button-xs button-lighter" href="{% url 'account' user_id=request.user.id %}">Корзина</a></div>
                   {% else %}
                     <div class="rd-navbar-main-item"><a class="button button-xs button-lighter" data-toggle="modal" href="#LoginModal">Войти</a></div>
                       <!--Login Modal -->
@@ -18,13 +19,13 @@
                                 <div class="row align-items-md-end row-20">
                                   <div class="col-md-12">
                                     <div class="form-wrap">
-                                      <input class="form-input" id="username" type="text" name="username" data-constraints="@Required @Multiple">
+                                      <input class="form-input" id="username" type="text" name="username" data-constraints="@Required">
                                       <label class="form-label" for="username">Логин</label>
                                     </div>
                                   </div>
                                   <div class="col-md-12">
                                     <div class="form-wrap">
-                                      <input class="form-input" id="password" type="password" name="password" data-constraints="@Required @Multiple">
+                                      <input class="form-input" id="password" type="password" name="password" data-constraints="@Required">
                                       <label class="form-label" for="password">Пароль</label>
                                     </div>
                                   </div>
